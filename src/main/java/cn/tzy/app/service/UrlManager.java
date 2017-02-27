@@ -7,29 +7,27 @@ import java.util.*;
  * @author tuzhenyu
  */
 public class UrlManager {
-    public static LinkedList<String> newUrlQueue = new LinkedList<String>();
-    public static Set<String> oldUrlQueue = new HashSet<String>();
+    public static LinkedList<String> urlQueue = new LinkedList<String>();
 
     public static boolean addUrl(String url){
         if("".equals(url)){
             return false;
-        }else if(newUrlQueue.contains(url)){
+        }else if(urlQueue.contains(url)){
             return false;
 
         }else {
-            newUrlQueue.add(url);
+            urlQueue.add(url);
             return true;
         }
     }
 
     public static String outUrl(){
-        String url = newUrlQueue.removeFirst();
-        oldUrlQueue.add(url);
+        String url = urlQueue.removeFirst();
         return url;
     }
 
     public static boolean hasNewUrl(){
-        return newUrlQueue.isEmpty();
+        return urlQueue.isEmpty();
     }
 
 

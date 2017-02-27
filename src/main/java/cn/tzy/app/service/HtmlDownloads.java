@@ -36,11 +36,8 @@ public class HtmlDownloads {
     public void startCrawler(String url){
         HtmlParse htmlParse = new HtmlParse();
 
-//        String page = getPageContent(url);
-//        htmlParse.parseHtml(page);
-
         UrlManager.addUrl(url);
-        while (UrlManager.newUrlQueue.size()>0){
+        while (UrlManager.urlQueue.size()>0){
             String newUrl = UrlManager.outUrl();
             String page = getPageContent(newUrl);
             htmlParse.parseHtml(page);
