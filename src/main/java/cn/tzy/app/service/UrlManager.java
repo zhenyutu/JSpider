@@ -1,5 +1,7 @@
 package cn.tzy.app.service;
 
+import cn.tzy.app.Main;
+
 import java.util.*;
 
 /**
@@ -7,9 +9,16 @@ import java.util.*;
  * @author tuzhenyu
  */
 public class UrlManager {
-    public LinkedList<String> urlQueue = new LinkedList<String>();
+    private LinkedList<String> urlQueue = new LinkedList<String>();
+    private List<String> allUrl = new ArrayList<String>();
 
-    public boolean addUrl(String url){
+    public UrlManager(){
+        String rootUrl = "http://baike.baidu.com/item/Python";
+        urlQueue.add(rootUrl);
+
+    }
+
+    synchronized private boolean addUrl(String url){
         if("".equals(url)){
             return false;
         }else if(urlQueue.contains(url)){
@@ -21,29 +30,56 @@ public class UrlManager {
         }
     }
 
-    public String outUrl(){
+    synchronized private String outUrl(){
         String url = urlQueue.removeFirst();
         return url;
     }
 
-    public void updateUrlQueue(Map resultMap){
+    synchronized private void updateUrlQueue(Map resultMap){
         for(Object o : resultMap.entrySet()){
             Map.Entry obj = (Map.Entry)o;
             addUrl((String)(obj.getValue()));
+            allUrl.add((String)(obj.getValue()));
         }
     }
 
-    public void startCrawler(String url){
-        addUrl(url);
+    public void startCrawler(){
         while (urlQueue.size()>0){
             String newUrl = outUrl();
             String page = HtmlDownloads.getPageContent(newUrl);
             Map resultMap = HtmlParse.parseHtml(page);
             updateUrlQueue(resultMap);
-            ResultWrite.printResult(resultMap);
+            try {
+                if (allUrl.size()>1000){
+                    System.out.println("end:"+(System.currentTimeMillis()- Main.begin));
+                    throw new InterruptedException();
+                }
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+//            ResultWrite.printResult(resultMap);
         }
 
     }
 
+    public void crawler(){
+        if (urlQueue.size()>0){
+            String newUrl = outUrl();
+            String page = HtmlDownloads.getPageContent(newUrl);
+            Map resultMap = HtmlParse.parseHtml(page);
+            updateUrlQueue(resultMap);
+            try {
+                if (allUrl.size()>1000){
+                    System.out.println("end:"+(System.currentTimeMillis()- Main.begin));
+                    throw new InterruptedException();
+                }
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+
+//            ResultWrite.printResult(resultMap);
+        }
+
+    }
 
 }
