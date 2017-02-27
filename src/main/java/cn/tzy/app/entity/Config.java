@@ -1,7 +1,6 @@
 package cn.tzy.app.entity;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
 
 /**
@@ -9,6 +8,7 @@ import java.util.Properties;
  * @author tuzhenyu
  */
 public class Config {
+
     public static String rootUrl;   //初始URL
 
     static{
