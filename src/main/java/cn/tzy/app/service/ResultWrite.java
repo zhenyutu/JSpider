@@ -7,13 +7,7 @@ import java.util.Map;
  */
 public class ResultWrite {
 
-    public void updateUrlQueue(Map resultMap){
-        for(Object o : resultMap.entrySet()){
-            Map.Entry obj = (Map.Entry)o;
-            UrlManager.addUrl((String)(obj.getValue()));
-        }
-    }
-    public void printResult(Map resultMap){
+    public static void printResult(Map resultMap){
         for(Object o : resultMap.entrySet()){
             Map.Entry obj = (Map.Entry)o;
             System.out.println("key:"+obj.getKey()+" value:"+obj.getValue());

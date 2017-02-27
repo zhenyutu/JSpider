@@ -12,6 +12,7 @@ import javax.print.DocFlavor;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
+import java.util.Map;
 
 /**
  * Created by tuzhenyu on 17-2-27.
@@ -19,7 +20,7 @@ import java.net.URL;
  */
 public class HtmlDownloads {
 
-    private String getPageContent(String url){
+    public static String getPageContent(String url){
         String page = null;
         try {
             HttpClient httpclient = HttpClients.createDefault();
@@ -32,16 +33,5 @@ public class HtmlDownloads {
         }
 
         return page;
-    }
-    public void startCrawler(String url){
-        HtmlParse htmlParse = new HtmlParse();
-
-        UrlManager.addUrl(url);
-        while (UrlManager.urlQueue.size()>0){
-            String newUrl = UrlManager.outUrl();
-            String page = getPageContent(newUrl);
-            htmlParse.parseHtml(page);
-        }
-
     }
 }

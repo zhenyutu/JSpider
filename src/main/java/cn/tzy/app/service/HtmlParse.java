@@ -14,14 +14,7 @@ import java.util.Map;
  */
 public class HtmlParse {
 
-    public void parseHtml(String htmlContent){
-        ResultWrite resultWrite = new ResultWrite();
-        Map result = getResult(htmlContent);
-        resultWrite.printResult(result);
-        resultWrite.updateUrlQueue(result);
-    }
-
-    private Map getResult(String htmlContent){
+    public static Map parseHtml(String htmlContent){
         Map<String,String> resultMap = new HashMap<String,String>();
         Document doc = Jsoup.parse(htmlContent);
         Elements links = doc.select("a[href*=/view]");
@@ -30,6 +23,5 @@ public class HtmlParse {
         }
         return resultMap;
     }
-
 
 }

@@ -7,9 +7,9 @@ import java.util.*;
  * @author tuzhenyu
  */
 public class UrlManager {
-    public static LinkedList<String> urlQueue = new LinkedList<String>();
+    public LinkedList<String> urlQueue = new LinkedList<String>();
 
-    public static boolean addUrl(String url){
+    public boolean addUrl(String url){
         if("".equals(url)){
             return false;
         }else if(urlQueue.contains(url)){
@@ -21,13 +21,28 @@ public class UrlManager {
         }
     }
 
-    public static String outUrl(){
+    public String outUrl(){
         String url = urlQueue.removeFirst();
         return url;
     }
 
-    public static boolean hasNewUrl(){
-        return urlQueue.isEmpty();
+    public void updateUrlQueue(Map resultMap){
+        for(Object o : resultMap.entrySet()){
+            Map.Entry obj = (Map.Entry)o;
+            addUrl((String)(obj.getValue()));
+        }
+    }
+
+    public void startCrawler(String url){
+        addUrl(url);
+        while (urlQueue.size()>0){
+            String newUrl = outUrl();
+            String page = HtmlDownloads.getPageContent(newUrl);
+            Map resultMap = HtmlParse.parseHtml(page);
+            updateUrlQueue(resultMap);
+            ResultWrite.printResult(resultMap);
+        }
+
     }
 
 
