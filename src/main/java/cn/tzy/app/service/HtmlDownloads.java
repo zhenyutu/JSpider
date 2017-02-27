@@ -1,12 +1,17 @@
 package cn.tzy.app.service;
 
+import cn.tzy.app.entity.Config;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 
+import javax.print.DocFlavor;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
 
 /**
  * Created by tuzhenyu on 17-2-27.
@@ -14,24 +19,32 @@ import java.io.IOException;
  */
 public class HtmlDownloads {
 
-    private String getPageContent(){
-
+    private String getPageContent(String url){
         String page = null;
         try {
             HttpClient httpclient = HttpClients.createDefault();
-            HttpGet httpget = new HttpGet("http://baike.baidu.com/item/Python");
+            HttpGet httpget = new HttpGet(url);
             HttpResponse response = httpclient.execute(httpget);
             page = EntityUtils.toString(response.getEntity(),"utf-8");
             httpget.releaseConnection();
-        }catch (IOException e){
+        }catch (Exception e){
             e.printStackTrace();
         }
 
         return page;
     }
-    public void startCrawler(){
+    public void startCrawler(String url){
         HtmlParse htmlParse = new HtmlParse();
-        String page = getPageContent();
-        htmlParse.parseHtml(page);
+
+//        String page = getPageContent(url);
+//        htmlParse.parseHtml(page);
+
+        UrlManager.addUrl(url);
+        while (UrlManager.newUrlQueue.size()>0){
+            String newUrl = UrlManager.outUrl();
+            String page = getPageContent(newUrl);
+            htmlParse.parseHtml(page);
+        }
+
     }
 }

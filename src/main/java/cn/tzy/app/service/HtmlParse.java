@@ -17,16 +17,16 @@ public class HtmlParse {
     public void parseHtml(String htmlContent){
         ResultWrite resultWrite = new ResultWrite();
         Map result = getResult(htmlContent);
-       resultWrite.printResult(result);
+        resultWrite.printResult(result);
+        resultWrite.updateUrlQueue(result);
     }
 
-
     private Map getResult(String htmlContent){
-        Map resultMap = new HashMap();
+        Map<String,String> resultMap = new HashMap<String,String>();
         Document doc = Jsoup.parse(htmlContent);
         Elements links = doc.select("a[href*=/view]");
         for (Element link : links) {
-            resultMap.put(link.text(),link.attr("href"));
+            resultMap.put(link.text(),"http://baike.baidu.com"+link.attr("href"));
         }
         return resultMap;
     }

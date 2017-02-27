@@ -9,7 +9,8 @@ import java.io.IOException;
 public class Main
 {
     public static void main( String[] args ) throws IOException{
+        String rootUrl = "http://baike.baidu.com/item/Python";
         HtmlDownloads htmlDownloads = new HtmlDownloads();
-        htmlDownloads.startCrawler();
+        htmlDownloads.startCrawler(rootUrl);
     }
 }
