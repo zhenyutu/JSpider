@@ -11,6 +11,11 @@ public class Config {
 
     public static String rootUrl;   //初始URL
 
+    public static String url;   //初始URL
+    public static String username;   //初始URL
+    public static String password;   //初始URL
+    public static String driver;   //初始URL
+
     static{
         Properties config = new Properties();
 
@@ -23,5 +28,10 @@ public class Config {
         }
 
         rootUrl = config.getProperty("rootUrl");
+
+        url = config.getProperty("jdbc.url");
+        username = config.getProperty("jdbc.username");
+        password = config.getProperty("jdbc.password");
+        driver = config.getProperty("jdbc.driver");
     }
 }

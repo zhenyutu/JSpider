@@ -1,5 +1,6 @@
 package cn.tzy.app.dao;
 
+import cn.tzy.app.entity.Config;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import java.beans.PropertyVetoException;
@@ -9,17 +10,17 @@ import java.sql.Connection;
  * Created by tuzhenyu on 17-2-28.
  * @author tuzhenyu
  */
-public class DatabaseManager {
-    private static DatabaseManager instance = null;
+public class DatabaseConnection {
+    private static DatabaseConnection instance = null;
     private static ComboPooledDataSource dataSource = null;
 
-    private DatabaseManager() throws PropertyVetoException {
+    private DatabaseConnection() throws PropertyVetoException {
         dataSource = new ComboPooledDataSource();
 
-        dataSource.setUser("root");
-        dataSource.setPassword("tuzhenyu");
-        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/test?useSSL=false");
-        dataSource.setDriverClass("com.mysql.jdbc.Driver");
+        dataSource.setUser(Config.username);
+        dataSource.setPassword(Config.password);
+        dataSource.setJdbcUrl(Config.url);
+        dataSource.setDriverClass(Config.driver);
 
         dataSource.setInitialPoolSize(5);
         dataSource.setMinPoolSize(1);
@@ -28,10 +29,10 @@ public class DatabaseManager {
         dataSource.setMaxIdleTime(60);
     }
 
-    public static DatabaseManager getInstance(){
+    public static DatabaseConnection getInstance(){
         try {
             if (instance == null){
-                instance = new DatabaseManager();
+                instance = new DatabaseConnection();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -39,7 +40,7 @@ public class DatabaseManager {
         return instance;
     }
 
-    public static Connection getConnection(){
+    public Connection getConnection(){
         Connection conn = null;
         try {
             conn = dataSource.getConnection();
