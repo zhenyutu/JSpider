@@ -1,18 +1,10 @@
 package cn.tzy.app.service;
 
-import cn.tzy.app.entity.Config;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
-
-import javax.print.DocFlavor;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URL;
-import java.util.Map;
 
 /**
  * Created by tuzhenyu on 17-2-27.

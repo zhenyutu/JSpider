@@ -12,9 +12,11 @@ public class Config {
     public static String rootUrl;   //初始URL
 
     public static String url;   //初始URL
-    public static String username;   //初始URL
-    public static String password;   //初始URL
-    public static String driver;   //初始URL
+    public static String username;   //初始username
+    public static String password;   //初始password
+    public static String driver;   //初始driver
+
+    public static String createUrlTable;   //初始createUrlTable
 
     static{
         Properties config = new Properties();
@@ -33,5 +35,7 @@ public class Config {
         username = config.getProperty("jdbc.username");
         password = config.getProperty("jdbc.password");
         driver = config.getProperty("jdbc.driver");
+
+        createUrlTable = config.getProperty("createUrlTable");
     }
 }

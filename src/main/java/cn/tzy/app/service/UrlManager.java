@@ -48,6 +48,7 @@ public class UrlManager {
             String newUrl = outUrl();
             String page = HtmlDownloads.getPageContent(newUrl);
             Map resultMap = HtmlParse.parseHtml(page);
+            ResultWrite.saveResult(resultMap);
             updateUrlQueue(resultMap);
             try {
                 if (allUrl.size()>1000){
@@ -67,6 +68,7 @@ public class UrlManager {
             String newUrl = outUrl();
             String page = HtmlDownloads.getPageContent(newUrl);
             Map resultMap = HtmlParse.parseHtml(page);
+            ResultWrite.saveResult(resultMap);
             updateUrlQueue(resultMap);
             try {
                 if (allUrl.size()>1000){
