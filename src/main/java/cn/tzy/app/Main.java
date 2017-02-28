@@ -1,6 +1,5 @@
 package cn.tzy.app;
 
-import cn.tzy.app.service.HtmlDownloads;
 import cn.tzy.app.service.UrlManager;
 import cn.tzy.app.thread.Mythread;
 
