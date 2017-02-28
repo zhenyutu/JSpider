@@ -13,13 +13,6 @@ import java.util.Map;
  */
 public class ResultWrite {
 
-    public static void printResult(Map resultMap){
-        for(Object o : resultMap.entrySet()){
-            Map.Entry obj = (Map.Entry)o;
-            System.out.println("key:"+obj.getKey()+" value:"+obj.getValue());
-        }
-    }
-
     public static void saveResult(Map resultMap){
         Connection conn = DatabaseConnection.getInstance().getConnection();
         DatabaseService databaseService = DatabaseService.getInstance(conn);

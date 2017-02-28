@@ -1,19 +1,21 @@
 package cn.tzy.app.thread;
 
-import cn.tzy.app.service.ProduceService;
+import cn.tzy.app.service.UrlManager;
 
 /**
  * Created by tuzhenyu on 17-2-27.
  * @author tuzhenyu
  */
 public class ProduceThread extends Thread{
-    private ProduceService produceService;
-    public ProduceThread(ProduceService produceService){
-        this.produceService = produceService;
+    private UrlManager urlManager;
+    public ProduceThread(UrlManager urlManager){
+        this.urlManager = urlManager;
     }
 
     @Override
     public void run() {
-
+        while (true){
+            urlManager.produce();
+        }
     }
 }
