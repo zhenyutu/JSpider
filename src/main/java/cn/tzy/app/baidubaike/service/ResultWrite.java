@@ -1,7 +1,7 @@
-package cn.tzy.app.service;
+package cn.tzy.app.baidubaike.service;
 
-import cn.tzy.app.dao.DatabaseConnection;
-import cn.tzy.app.entity.Urls;
+import cn.tzy.app.baidubaike.dao.DatabaseConnection;
+import cn.tzy.app.baidubaike.entity.Urls;
 
 import java.sql.Connection;
 import java.sql.SQLException;

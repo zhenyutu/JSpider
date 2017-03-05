@@ -1,4 +1,4 @@
-package cn.tzy.app.entity;
+package cn.tzy.app.baidubaike.entity;
 
 import lombok.Getter;
 import lombok.Setter;

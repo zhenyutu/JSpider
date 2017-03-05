@@ -1,6 +1,6 @@
-package cn.tzy.app.thread;
+package cn.tzy.app.baidubaike.thread;
 
-import cn.tzy.app.service.UrlManager;
+import cn.tzy.app.baidubaike.service.UrlManager;
 
 /**
  * Created by tuzhenyu on 17-2-27.

@@ -1,6 +1,6 @@
-package cn.tzy.app.service;
+package cn.tzy.app.baidubaike.service;
 
-import cn.tzy.app.Main;
+import cn.tzy.app.baidubaike.Main;
 import org.apache.log4j.Logger;
 
 import java.util.*;

@@ -1,15 +1,10 @@
-package cn.tzy.app;
+package cn.tzy.app.baidubaike;
 
-import cn.tzy.app.dao.DatabaseConnection;
-import cn.tzy.app.entity.Urls;
-import cn.tzy.app.service.*;
-import cn.tzy.app.thread.ConsumeThread;
-import cn.tzy.app.thread.Mythread;
-import cn.tzy.app.thread.ProduceThread;
+import cn.tzy.app.baidubaike.service.UrlManager;
+import cn.tzy.app.baidubaike.thread.ConsumeThread;
+import cn.tzy.app.baidubaike.thread.ProduceThread;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.util.Map;
 
 /**
  * JSpider

@@ -1,4 +1,4 @@
-package cn.tzy.app;
+package cn.tzy.app.lagou;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -10,7 +10,7 @@ import org.apache.http.util.EntityUtils;
  * Created by tuzhenyu on 17-3-4.
  * @author tuzhenyu
  */
-public class Lagou {
+public class Main {
     public static void main(String[] args) {
         String page = null;
         HttpClient httpclient = HttpClients.createDefault();

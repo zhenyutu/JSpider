@@ -1,21 +1,22 @@
-package cn.tzy.app.thread;
+package cn.tzy.app.baidubaike.thread;
 
-import cn.tzy.app.service.UrlManager;
+import cn.tzy.app.baidubaike.service.UrlManager;
 
 /**
  * Created by tuzhenyu on 17-2-27.
  * @author tuzhenyu
  */
-public class ProduceThread extends Thread{
+public class ConsumeThread extends Thread{
     private UrlManager urlManager;
-    public ProduceThread(UrlManager urlManager){
+    public ConsumeThread(UrlManager urlManager){
         this.urlManager = urlManager;
     }
 
     @Override
     public void run() {
         while (true){
-            urlManager.produce();
+            urlManager.consume();
         }
+
     }
 }

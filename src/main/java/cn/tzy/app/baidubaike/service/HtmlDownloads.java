@@ -1,4 +1,4 @@
-package cn.tzy.app.service;
+package cn.tzy.app.baidubaike.service;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

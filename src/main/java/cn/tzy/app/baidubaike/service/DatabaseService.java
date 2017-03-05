@@ -1,7 +1,7 @@
-package cn.tzy.app.service;
+package cn.tzy.app.baidubaike.service;
 
-import cn.tzy.app.entity.Config;
-import cn.tzy.app.entity.Urls;
+import cn.tzy.app.baidubaike.entity.Config;
+import cn.tzy.app.baidubaike.entity.Urls;
 import org.apache.log4j.Logger;
 
 import java.sql.*;

@@ -1,6 +1,6 @@
-package cn.tzy.app.dao;
+package cn.tzy.app.baidubaike.dao;
 
-import cn.tzy.app.entity.Config;
+import cn.tzy.app.baidubaike.entity.Config;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import java.beans.PropertyVetoException;
