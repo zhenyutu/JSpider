@@ -1,5 +1,7 @@
 package cn.tzy.app.lagou;
 
+import cn.tzy.app.lagou.entity.JsonResult;
+import com.google.gson.Gson;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -12,7 +14,7 @@ import org.apache.http.util.EntityUtils;
  */
 public class Main {
     public static void main(String[] args) {
-        String page = null;
+        String result = null;
         HttpClient httpclient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet("http://www.lagou.com/jobs/positionAjax.json?px=new");
 
@@ -24,8 +26,10 @@ public class Main {
         try {
 
             HttpResponse response = httpclient.execute(httpGet);
-            page = EntityUtils.toString(response.getEntity(),"utf-8");
-            System.out.println(page);
+            result = EntityUtils.toString(response.getEntity(),"utf-8");
+            Gson gson = new Gson();
+            JsonResult jsonResult = gson.fromJson(result, JsonResult.class);
+            System.out.println(jsonResult.getContent().getPositionResult().getResult());
         }catch (Exception e){
             e.printStackTrace();
         }finally {
