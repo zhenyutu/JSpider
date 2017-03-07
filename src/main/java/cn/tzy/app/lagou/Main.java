@@ -15,15 +15,15 @@ public class Main {
     public static void main(String[] args) {
         String url = "http://www.lagou.com/jobs/positionAjax.json?px=new";
 
-        Map<String,String> params = new HashMap<>();
-        params.put("first","true");
-        params.put("kd","java");
-        params.put("pn","333");
+//        Map<String,String> params = new HashMap<>();
+//        params.put("first","true");
+//        params.put("kd","java");
+//        params.put("pn","333");
+//        String result = HttpUtil.post(url,params);
 
-//        String result = HttpUtil.get(url);
-        String result = HttpUtil.post(url,params);
+        String result = HttpUtil.get(url);
+
         System.out.println(result);
-
 //        Gson gson = new Gson();
 //        JsonResult jsonResult = gson.fromJson(result, JsonResult.class);
 //        System.out.println(jsonResult.getContent().getPositionResult().getResult());

@@ -1,12 +1,16 @@
 package cn.tzy.app.lagou.util;
 
+import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -38,6 +42,10 @@ public class HttpUtil {
         String result = null;
         HttpGet httpGet = new HttpGet(url);
 
+        HttpHost proxy = new HttpHost("119.29.126.115", 80);
+        RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
+        httpGet.setConfig(config);
+
         httpGet.setHeader("X-Requested-With", "XMLHttpRequest");
         httpGet.setHeader("Origin", "https://www.lagou.com");
         httpGet.setHeader("Connection", "keep-alive");
@@ -61,7 +69,19 @@ public class HttpUtil {
     public static String post(String url, Map<String,String> paramsMap){
         String result = null;
         HttpPost httpPost = new HttpPost(url);
-        List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+        HttpHost proxy = new HttpHost("113.200.29.10", 9999);
+
+//        RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
+//        httpPost.setConfig(config);
+
+        HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+        httpClientBuilder.setProxy(proxy);
+        CloseableHttpClient closeableHttpClient = httpClientBuilder.build();
+
+
+
+        List<NameValuePair> params = new ArrayList<>();
 
         httpPost.setHeader("X-Requested-With", "XMLHttpRequest");
         httpPost.setHeader("Origin", "https://www.lagou.com");
@@ -78,7 +98,7 @@ public class HttpUtil {
 
         try {
             httpPost.setEntity(new UrlEncodedFormEntity(params));
-            HttpResponse response = httpclient.execute(httpPost);
+            HttpResponse response = closeableHttpClient.execute(httpPost);
             result = EntityUtils.toString(response.getEntity(),"utf-8");
         }catch (IOException e){
             e.printStackTrace();
